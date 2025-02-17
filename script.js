@@ -22,16 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // your code here
   let cookie = getCookie("count");
   console.log("starting", cookie);
-  if (!cookie) {
+  const countDisplay = document.getElementById("countDisplay");
+  if (cookie) {
+    setCookie("count", Number(cookie) + 1, 1);
+    cookie = getCookie("count");
+  } else {
     setCookie("count", 1, 1);
     cookie = getCookie("count");
   }
-  const countDisplay = document.getElementById("countDisplay");
-  const incrementCount = document.getElementById("incrementCount");
-
   countDisplay.innerHTML = cookie;
-  incrementCount.addEventListener("click", () => {
-    setCookie("count", Number(getCookie("count")) + 1, 1);
-    countDisplay.innerHTML = getCookie("count");
-  });
 });
